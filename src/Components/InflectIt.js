@@ -2,11 +2,10 @@ import React from "react"
 import inflection from "inflection"
 
 export default function InflectIt({ setInputWord, addWord, word, setWord }) {
-  const deleteWord = e => {
-    console.dir(e.target)
-    let index = e.target.id
-    word.splice(index)
+  const deleteWord = indexToDelete => {
+    word.splice(indexToDelete)
     setWord([...word])
+    console.log(word)
   }
 
   return (
@@ -16,14 +15,14 @@ export default function InflectIt({ setInputWord, addWord, word, setWord }) {
         +
       </button>
       <div id="inflected-info">
-        {word.map((word, index) => {
-          word.toString()
-          let plural = inflection.pluralize(word)
+        {word.map((wordItem, index) => {
+          let plural = inflection.pluralize(wordItem)
+          console.log("in the map")
           return (
-            <div key={index} id="">
-              <p>{word}(Singular)</p>
+            <div key={index}>
+              <p>{wordItem}(Singular)</p>
               <p>{plural}(plural)</p>
-              <button id={index} key={index} onClick={deleteWord}>
+              <button key={index} onClick={deleteWord(index)}>
                 x
               </button>
             </div>
