@@ -2,7 +2,7 @@ import React from "react"
 import inflection from "inflection"
 
 export default function InflectIt({ setInputWord, addWord, word, setWord }) {
-  const deleteWord = indexToDelete => {
+  const deleteWord = indexToDelete => () => {
     word.splice(indexToDelete)
     setWord([...word])
     console.log(word)
